@@ -21,7 +21,7 @@ class LoginController extends Controller
 
             return redirect()->route('admin.dashboard');
         }
-
+     //   echo $request->email ."<br>".$request->password;
         return redirect()->back()->with(['error'=>'هناك خطأ بالابيانات']);
 
     }

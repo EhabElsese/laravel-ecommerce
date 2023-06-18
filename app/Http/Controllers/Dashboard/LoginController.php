@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminLoginRequest;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -23,6 +24,14 @@ class LoginController extends Controller
         }
      //   echo $request->email ."<br>".$request->password;
         return redirect()->back()->with(['error'=>'هناك خطأ بالابيانات']);
+
+    }
+
+    public function logout () {
+
+        Auth::logout();
+
+        return redirect()->route('admin.show');
 
     }
 

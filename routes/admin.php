@@ -19,7 +19,9 @@ use App\Http\Controllers\Dashboard\SettingsController;
 
     Route::group([ 'middleware' => 'auth:admin', 'prefix' => 'admin'], function () {
         Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
-        Route::get('/logout', function () {Auth::logout();return redirect()->route('admin.show');});
+
+        // Admin route logout
+        Route::get('/logout',[LoginController::class, 'logout'])->name('admin.logout');
 
         // Settings Routes
         Route::group(['prefix' => 'settings'], function () {

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\LoginController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\SettingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,21 +17,23 @@ use App\Http\Controllers\Dashboard\DashboardController;
 |
 */
 
+    Route::group([ 'middleware' => 'auth:admin', 'prefix' => 'admin'], function () {
+        Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
+        Route::get('/logout', function () {Auth::logout();return redirect()->route('admin.show');});
 
-Route::group(['namespace'=>'Dashboard','middleware'=>'auth:admin','prefix'=>'admin'],function(){
-    Route::get('/',[DashboardController::class,'index'])->name('admin.dashboard');
+        // Settings Routes
+        Route::group(['prefix' => 'settings'], function () {
+            Route::get('shipping-method/{type}', [SettingsController::class, 'editShippingMethod'])->name('edit.shippings');
+            Route::post('shipping-method/{id}', [SettingsController::class, 'updateShippingMethod'])->name('update.shippings');
+        });
+    });
 
-    Route::get('/logout',function (){
-        Auth::logout();
-        return redirect()->route('admin.show') ;
+    // login page routes
+    Route::group([ 'prefix' => 'admin', 'middleware' => 'guest:admin'], function () {
+        Route::get('/login', [LoginController::class, 'index'])->name('admin.show');
+        Route::post('/login', [LoginController::class, 'login'])->name('admin.login');
+
+
     });
 
 
-});
-
-Route::group(['namespace'=>'Dashboard','prefix'=>'admin','middleware'=>'guest:admin'],function(){
-    Route::get('/login',[LoginController::class,'index'])->name('admin.show');
-    Route::post('/login',[LoginController::class,'login'])->name('admin.login');
-
-
-});

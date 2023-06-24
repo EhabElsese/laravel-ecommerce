@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\LoginController;
@@ -27,6 +28,12 @@ use App\Http\Controllers\Dashboard\SettingsController;
         Route::group(['prefix' => 'settings'], function () {
             Route::get('shipping-method/{type}', [SettingsController::class, 'editShippingMethod'])->name('edit.shippings');
             Route::post('shipping-method/{id}', [SettingsController::class, 'updateShippingMethod'])->name('update.shippings');
+        });
+
+        // profile Route
+        Route::group(['prefix' => 'prfile'], function () {
+            Route::get('/edit', [ProfileController::class, 'editProfile'])->name('edit.profile');
+            Route::post('/update/{id}', [ProfileController::class, 'updateProfile'])->name('update.profile');
         });
     });
 

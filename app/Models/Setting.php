@@ -18,6 +18,8 @@ class Setting extends Model
 
     protected $fillable = ['key','is_translatable','plain_value'];
 
+    protected $hidden = ['translations'];
+
     protected $casts = [
         'is_translatable' => 'boolean'
     ];

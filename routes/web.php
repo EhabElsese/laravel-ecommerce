@@ -16,5 +16,9 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 Route::get('/test' , function () {
 
-    return dd(count(LaravelLocalization::getSupportedLocales()) -1);
+    $dep =  App\Models\Category::find(1);
+
+    $dep -> makeVisible(['translations']);
+
+    return $dep;
 });

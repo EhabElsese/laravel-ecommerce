@@ -24,5 +24,10 @@ class Category extends Model
     ];
 
 
+    public function cat_status (){
+
+       return $this-> is_active == 0  ? "غير مفعل  " : 'مفعل' ;
+    }
+
 
 }

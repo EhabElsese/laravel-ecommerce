@@ -7,7 +7,7 @@ use App\Http\Requests\MainCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
-class MainCategoriesController extends Controller
+class SubCategoriesController extends Controller
 {
 
     // index finction
@@ -15,9 +15,9 @@ class MainCategoriesController extends Controller
     public function index()
     {
 
-        $categories = Category::where('parent_id', null)->orderByDesc('id')->paginate(PAGINATION_COUNT);
+        $categories = Category::whereNot('parent_id', null)->orderByDesc('id')->paginate(PAGINATION_COUNT);
 
-        return view('dashboard.categories.index', compact('categories'));
+        return view('dashboard.subcategories.index', compact('categories'));
     }
 
     // create category func

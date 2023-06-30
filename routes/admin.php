@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Dashboard\BrandsController;
 use App\Http\Controllers\Dashboard\MainCategoriesController;
+use App\Http\Controllers\Dashboard\SubCategoriesController;
 use App\Http\Controllers\Dashboard\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -37,7 +39,7 @@ use App\Http\Controllers\Dashboard\SettingsController;
             Route::post('/update/{id}', [ProfileController::class, 'updateProfile'])->name('update.profile');
         });
 
-        // categories Route
+        // Main categories Route
         Route::group(['prefix' => 'main_categories'], function () {
             Route::get('/',[MainCategoriesController::class,'index']) -> name('admin.maincategories');
             Route::get('create',[MainCategoriesController::class,'create']) -> name('admin.maincategories.create');
@@ -45,6 +47,24 @@ use App\Http\Controllers\Dashboard\SettingsController;
             Route::get('edit/{id}',[MainCategoriesController::class,'edit']) -> name('admin.maincategories.edit');
             Route::post('update/{id}',[MainCategoriesController::class,'updateCategory']) -> name('admin.maincategories.update');
             Route::get('delete/{id}',[MainCategoriesController::class,'destroy']) -> name('admin.maincategories.delete');
+        });
+        // Sub categories Route
+        Route::group(['prefix' => 'sub_categories'], function () {
+            Route::get('/',[SubCategoriesController::class,'index']) -> name('admin.subcategories');
+            Route::get('create',[SubCategoriesController::class,'create']) -> name('admin.subcategories.create');
+            Route::post('store',[SubCategoriesController::class,'store']) -> name('admin.subcategories.store');
+            Route::get('edit/{id}',[SubCategoriesController::class,'edit']) -> name('admin.subcategories.edit');
+            Route::post('update/{id}',[SubCategoriesController::class,'updateCategory']) -> name('admin.subcategories.update');
+            Route::get('delete/{id}',[SubCategoriesController::class,'destroy']) -> name('admin.subcategories.delete');
+        });
+        // Brands Route
+        Route::group(['prefix' => 'brands'], function () {
+            Route::get('/',[BrandsController::class,'index']) -> name('admin.brands');
+            Route::get('create',[BrandsController::class,'create']) -> name('admin.brands.create');
+            Route::post('store',[BrandsController::class,'store']) -> name('admin.brands.store');
+            Route::get('edit/{id}',[BrandsController::class,'edit']) -> name('admin.brands.edit');
+            Route::post('update/{id}',[BrandsController::class,'update']) -> name('admin.brands.update');
+            Route::get('delete/{id}',[BrandsController::class,'destroy']) -> name('admin.brands.delete');
         });
     });
 

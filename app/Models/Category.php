@@ -24,6 +24,11 @@ class Category extends Model
     ];
 
 
+    public function scopeActive ($query) {
+
+        return $query->where('is_active',1);
+    }
+
     public function cat_status (){
 
        return $this-> is_active == 0  ? "غير مفعل  " : 'مفعل' ;

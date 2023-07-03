@@ -16,9 +16,14 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 Route::get('/test' , function () {
 
-    $dep =  App\Models\Category::find(1);
+    $collection = collect([1, 2, 3, 4, 5]);
 
-    $dep -> makeVisible(['translations']);
+    $multiplied = $collection->map(function (int $item, int $key) {
+        return $item * 2 ;
+    });
 
-    return $dep;
+
+    return $multiplied->add($collection->map(function (int $item, int $key) {
+        return $item * 2 ;
+    }));
 });

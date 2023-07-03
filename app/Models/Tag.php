@@ -25,6 +25,8 @@ class Tag extends Model
 
 
 
+
+
     public function cat_status (){
 
         return $this-> is_active === false  ? "غير مفعل  " : 'مفعل' ;

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Dashboard\BrandsController;
 use App\Http\Controllers\Dashboard\MainCategoriesController;
+use App\Http\Controllers\Dashboard\ProductsController;
 use App\Http\Controllers\Dashboard\SubCategoriesController;
 use App\Http\Controllers\Dashboard\ProfileController;
 use App\Http\Controllers\Dashboard\TagsController;
@@ -50,14 +51,14 @@ use App\Http\Controllers\Dashboard\SettingsController;
             Route::get('delete/{id}',[MainCategoriesController::class,'destroy']) -> name('admin.maincategories.delete');
         });
         // Sub categories Route
-        Route::group(['prefix' => 'sub_categories'], function () {
+      /*  Route::group(['prefix' => 'sub_categories'], function () {
             Route::get('/',[SubCategoriesController::class,'index']) -> name('admin.subcategories');
             Route::get('create',[SubCategoriesController::class,'create']) -> name('admin.subcategories.create');
             Route::post('store',[SubCategoriesController::class,'store']) -> name('admin.subcategories.store');
             Route::get('edit/{id}',[SubCategoriesController::class,'edit']) -> name('admin.subcategories.edit');
             Route::post('update/{id}',[SubCategoriesController::class,'updateCategory']) -> name('admin.subcategories.update');
             Route::get('delete/{id}',[SubCategoriesController::class,'destroy']) -> name('admin.subcategories.delete');
-        });
+        });*/
         // Brands Route
         Route::group(['prefix' => 'brands'], function () {
             Route::get('/',[BrandsController::class,'index']) -> name('admin.brands');
@@ -75,6 +76,26 @@ use App\Http\Controllers\Dashboard\SettingsController;
             Route::get('edit/{id}',[TagsController::class,'edit']) -> name('admin.tags.edit');
             Route::post('update/{id}',[TagsController::class,'update']) -> name('admin.tags.update');
             Route::get('delete/{id}',[TagsController::class,'destroy']) -> name('admin.tags.delete');
+        });
+
+        // Products Route
+        Route::group(['prefix' => 'products'], function () {
+            Route::get('/',[ProductsController::class,'index']) -> name('admin.products');
+            Route::get('create',[ProductsController::class,'create']) -> name('admin.products.general.create');
+            Route::post('store',[ProductsController::class,'store']) -> name('admin.products.general.store');
+
+            Route::get('price/{id}',[ProductsController::class,'getPrice']) -> name('admin.products.price');
+            Route::post('price',[ProductsController::class,'saveProductPrice']) -> name('admin.products.price.store');
+
+
+            Route::get('stock/{id}', [ProductsController::class,'getStock'])->name('admin.products.stock');
+            Route::post('stock', [ProductsController::class,'saveProductStock'])->name('admin.products.stock.store');
+
+            Route::get('images/{id}', [ProductsController::class,'addImages'])->name('admin.products.images');
+            Route::post('images', [ProductsController::class,'saveProductImages'])->name('admin.products.images.store');
+            Route::post('images/db', [ProductsController::class,'saveProductImagesDB'])->name('admin.products.images.store.db');
+            Route::get('images/delete/{id}', [ProductsController::class,'destroyImages'])->name('admin.products.images.delete');
+
         });
     });
 

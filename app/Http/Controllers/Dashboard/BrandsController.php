@@ -61,6 +61,8 @@ class BrandsController extends Controller
 
     }
 
+
+
     /**
      * Display the specified resource.
      */
@@ -149,5 +151,7 @@ class BrandsController extends Controller
             return redirect()->route('admin.brands')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
     }
+
+
 
 }

@@ -24,7 +24,8 @@ class SubCategoriesController extends Controller
 
     public function create()
     {
-        $categories =   Category::select('id','parent_id')->get();
+       // $categories =   Category::select('id','parent_id')->get();
+        $categories = Category::all();
         return view('dashboard.categories.create',compact('categories'));
     }
 

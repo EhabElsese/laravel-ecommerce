@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MainCategoryRequest extends FormRequest
+class ProductStockRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,10 +23,11 @@ class MainCategoryRequest extends FormRequest
     {
         return [
 
-            'name' => 'required',
-            'type' => 'required|in:1,2',
-            'slug' => 'required|unique:categories,slug,'.$this -> id,
-
+            'sku' => 'nullable|min:3|max:10',
+            'product_id' => 'required|exists:products,id',
+            'manage_stock' => 'required|in:0,1',
+            'in_stock' => 'required|in:0,1',
+            'qty' => 'required_if:manage_stock,==,1',
         ];
     }
 }

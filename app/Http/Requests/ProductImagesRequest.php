@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MainCategoryRequest extends FormRequest
+class ProductImagesRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,9 +23,9 @@ class MainCategoryRequest extends FormRequest
     {
         return [
 
-            'name' => 'required',
-            'type' => 'required|in:1,2',
-            'slug' => 'required|unique:categories,slug,'.$this -> id,
+            'product_id' => 'required|exists:products,id',
+            'document' => 'required|array|min:1',
+            'document.*' => 'required|string',
 
         ];
     }

@@ -1,6 +1,6 @@
 <?php
 
-define('PAGINATION_COUNT', 15);
+define('PAGINATION_COUNT', 50);
 
 function getFolder () {
 
@@ -15,3 +15,5 @@ function uploadImage($folder,$image){
 
     return $filename;
 }
+
+

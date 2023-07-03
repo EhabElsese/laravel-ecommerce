@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             SettingDatabaseSeeder::class,
             CategoryDatabaseSeeder::class,
+            ProductDatabaseSeeder::class,
+            AdminDatabaseSeeder::class
         ]);
 
 

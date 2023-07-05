@@ -15,7 +15,7 @@ class Category extends Model
 
     protected array $translatedAttributes = ['name'];
 
-    protected $fillable = ['slug','is_active','parent_id '];
+    protected $fillable = ['slug','is_active','parent_id'];
 
     protected $hidden = ['translations'];
 

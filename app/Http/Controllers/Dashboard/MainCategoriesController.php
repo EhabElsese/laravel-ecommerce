@@ -33,6 +33,7 @@ class MainCategoriesController extends Controller
 
     public function store(MainCategoryRequest $request)
     {
+        
         try {
 
             DB::beginTransaction();
@@ -43,51 +44,30 @@ class MainCategoriesController extends Controller
                 $request->request->add(['is_active' => 0]);
             else
                 $request->request->add(['is_active' => 1]);
-           // return $request;
 
-            //if user choose main category then we must remove parent id from the request
-            //return var_dump($request -> type === CategoryType::mainCategory);
-           if($request -> type === CategoryType::mainCategory) //main category
+            //if user choose main category then we must remove paret id from the request
+
+            if($request -> type == CategoryType::mainCategory) //main category
             {
+                $request->request->add(['parent_id' => null]);
+            }
 
-                //$request->request->add(['parent_id' => null]);
+            //if he choose child category we mus t add parent id
 
-                $category = Category::create($request->except('_token'));
-                $request->parent_id = null;
-                $category->name = $request->name;
-                $category->save();
-               // return $request;
-                DB::commit();
-                return redirect()->route('admin.maincategories')->with(['success' => 'تم ألاضافة بنجاح']);
-            }else {
-               $category->slug = $request->slug;
-               $category->is_active = $request->is_active;
-               $category->parent_id = $request->parent_id;
-               $category->name = $request->name;
-               $category->save();
-              // return $request;
-               DB::commit();
-               return redirect()->route('admin.maincategories')->with(['success' => 'تم ألاضافة بنجاح']);
-           }
 
-            //if he choose child category we must add parent id
-
-       // $category = Category::create($request->except('_token'));
-            //$category = Category::create(['slug'=>$request->slug,'is_active'=>$request->is_active,'parent_id'=>$request->parent_id]);
+            $category = Category::create($request->except('_token'));
 
             //save translations
-           // $category->name = $request->name;
-          //  $category->save();
-           // return $request->parent_id;
-         //   DB::commit();
-          //  return redirect()->route('admin.maincategories')->with(['success' => 'تم ألاضافة بنجاح']);
-
+            $category->name = $request->name;
+            $category->save();
+            DB::commit();
+            return redirect()->route('admin.maincategories')->with(['success' => 'تم ألاضافة بنجاح']);
+           
 
         } catch (\Exception $ex) {
             DB::rollback();
             return redirect()->route('admin.maincategories')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
-
 
 
 

@@ -26,7 +26,7 @@
             <li class="nav-item"><a href=""><i class="la la-group"></i>
                     <span class="menu-title" data-i18n="nav.dash.main">الاقسام الرئيسيه </span>
                     <span
-                        class="badge badge badge-danger badge-pill float-right mr-2">{{\App\Models\Category::where('parent_id', null) -> count()}}</span>
+                        class="badge badge badge-danger badge-pill float-right mr-2">{{\App\Models\Category::all() -> count()}}</span>
                 </a>
                 <ul class="menu-content">
                     <li class="active"><a class="menu-item" href="{{route('admin.maincategories')}}"
@@ -97,6 +97,20 @@
                     </li>
                 </ul>
             </li>
+            <li class="nav-item"><a href=""><i class="la la-male"></i>
+              <span class="menu-title" data-i18n="nav.dash.main">خصائص المنتج  </span>
+              <span
+                  class="badge badge badge-warning  badge-pill float-right mr-2">{{\App\Models\Product::all() -> count()}}</span>
+          </a>
+          <ul class="menu-content">
+              <li class="active"><a class="menu-item" href="{{route('admin.attributes')}}"
+                                    data-i18n="nav.dash.ecommerce"> عرض الكل </a>
+              </li>
+              <li><a class="menu-item" href="{{route('admin.attributes.create')}}" data-i18n="nav.dash.crypto">أضافة
+                       جديد </a>
+              </li>
+          </ul>
+      </li>
 
 
             <li class="nav-item">

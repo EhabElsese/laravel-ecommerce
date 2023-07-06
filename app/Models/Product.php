@@ -72,4 +72,14 @@ class Product extends Model
 
         return ($val !== null) ? asset('assets/images/products/'.$val) : "" ;
     }
+
+    public function options()
+    {
+        return $this->hasMany(Option::class);
+    }
+
+    public function scopeActive ($query){
+
+        return $query->where('is_active',1);
+    }
 }

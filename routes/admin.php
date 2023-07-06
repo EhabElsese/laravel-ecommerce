@@ -3,6 +3,7 @@
 use App\Http\Controllers\Dashboard\AttributesController;
 use App\Http\Controllers\Dashboard\BrandsController;
 use App\Http\Controllers\Dashboard\MainCategoriesController;
+use App\Http\Controllers\Dashboard\OptionsController;
 use App\Http\Controllers\Dashboard\ProductsController;
 use App\Http\Controllers\Dashboard\SubCategoriesController;
 use App\Http\Controllers\Dashboard\ProfileController;
@@ -99,7 +100,7 @@ use App\Http\Controllers\Dashboard\SettingsController;
 
         });
 
-        ################################## attrributes routes ######################################
+        // attributes Routes
         Route::group(['prefix' => 'attributes'], function () {
             Route::get('/', [AttributesController::class,'index'])->name('admin.attributes');
             Route::get('create', [AttributesController::class,'create'])->name('admin.attributes.create');
@@ -107,6 +108,16 @@ use App\Http\Controllers\Dashboard\SettingsController;
             Route::get('delete/{id}', [AttributesController::class,'destroy'])->name('admin.attributes.delete');
             Route::get('edit/{id}', [AttributesController::class,'edit'])->name('admin.attributes.edit');
             Route::post('update/{id}', [AttributesController::class,'update'])->name('admin.attributes.update');
+        });
+
+        // options Routes
+        Route::group(['prefix' => 'options'], function () {
+            Route::get('/', [OptionsController::class,'index'])->name('admin.options');
+            Route::get('create', [OptionsController::class,'create'])->name('admin.options.create');
+            Route::post('store', [OptionsController::class,'store'])->name('admin.options.store');
+            //Route::get('delete/{id}',[OptionsController::class,'destroy']) -> name('admin.options.delete');
+            Route::get('edit/{id}', [OptionsController::class,'edit'])->name('admin.options.edit');
+            Route::post('update/{id}',[OptionsController::class,'update'])->name('admin.options.update');
         });
     });
 

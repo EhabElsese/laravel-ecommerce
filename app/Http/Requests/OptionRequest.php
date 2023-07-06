@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AttributeRequest extends FormRequest
+class OptionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,10 @@ class AttributeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:100|unique:attribute_translations,name'.$this->id,
+            'name' => 'required|max:100',
+            'price' => 'required|numeric|min:0',
+            'product_id' => 'required|exists:products,id',
+            'attribute_id' => 'required|exists:attributes,id',
         ];
     }
 }

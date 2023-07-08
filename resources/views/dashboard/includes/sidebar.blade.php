@@ -141,8 +141,17 @@
                             <li><a class="menu-item" href="{{route('edit.shippings','outer')}}"
                                    data-i18n="nav.templates.vert.compact_menu">توصيل خارجي</a>
                             </li>
+
                         </ul>
                     </li>
+                    <li><a class="menu-item" href="#"
+                     data-i18n="nav.templates.vert.main"> {{__('admin/sidebar.main slider')}} </a>
+                  <ul class="menu-content">
+                      <li><a class="menu-item" href="{{route('admin.sliders.create')}}"
+                             data-i18n="nav.templates.vert.classic_menu">صور الاسليدر </a>
+                      </li>
+                  </ul>
+              </li>
                 </ul>
             </li>
             <li class=" navigation-header">

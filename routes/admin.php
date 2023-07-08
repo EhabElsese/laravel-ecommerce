@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\LoginController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\SettingsController;
+use App\Http\Controllers\Dashboard\SliderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -118,6 +119,15 @@ use App\Http\Controllers\Dashboard\SettingsController;
             //Route::get('delete/{id}',[OptionsController::class,'destroy']) -> name('admin.options.delete');
             Route::get('edit/{id}', [OptionsController::class,'edit'])->name('admin.options.edit');
             Route::post('update/{id}',[OptionsController::class,'update'])->name('admin.options.update');
+        });
+
+        //Sliders Route 
+
+        Route::group(['prefix' => 'sliders'], function () {
+            Route::get('/', [SliderController::class,'addImages'])->name('admin.sliders.create');
+            Route::post('images', [SliderController::class,'saveSliderImages'])->name('admin.sliders.images.store');
+            Route::post('images/db', [SliderController::class,'saveSliderImagesDB'])->name('admin.sliders.images.store.db');
+
         });
     });
 

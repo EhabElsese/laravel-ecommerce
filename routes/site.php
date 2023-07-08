@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
     Route::group(['namespace' => 'Site'/*, 'middleware' => 'guest'*/], function () {
         //guest  user
-Route::get('fat','PaymentController@fatoorah');
+        Route::get('fat','PaymentController@fatoorah');
         route::get('/', 'HomeController@home')->name('home')->middleware('VerifiedUser');
         route::get('category/{slug}', 'CategoryController@productsBySlug')->name('category');
         route::get('product/{slug}', 'ProductController@productsBySlug')->name('product.details');
@@ -43,7 +43,7 @@ Route::get('fat','PaymentController@fatoorah');
         });
     });
 
-    Route::group(['namespace' => 'Site', 'middleware' => 'auth'], function () {
+    Route::group(['middleware' => 'auth'], function () {
         // must be authenticated user
         Route::post('verify-user/', 'VerificationCodeController@verify')->name('verify-user');
         Route::get('verify', 'VerificationCodeController@getVerifyPage')->name('get.verification.form');
@@ -51,6 +51,10 @@ Route::get('fat','PaymentController@fatoorah');
         Route::post('products/{productId}/reviews', 'ProductReviewController@store')->name('products.reviews.store');
         Route::get('payment/{amount}', 'PaymentController@getPayments') -> name('payment');
         Route::post('payment', 'PaymentController@processPayment') -> name('payment.process');
+        Route::get('/',function (){
+
+            return view('front.home');
+        })->name('home');
 
     });
 
@@ -63,7 +67,4 @@ Route::group(['namespace' => 'Site', 'middleware' => 'auth'], function () {
 });
 
 
-Route::get('front',function (){
 
-    return view('front.home');
-});

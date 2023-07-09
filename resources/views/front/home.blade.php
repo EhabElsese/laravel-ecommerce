@@ -61,12 +61,16 @@
                 <div class="row">
                     <div class="nov-row spacing-30 mt-15 col-lg-12 col-xs-12">
                         <div class="nov-row-wrap row">
+                            @isset($sliders)
+                            @foreach ($sliders as $slider)
+                                
+                            
                             <div class="nov-image col-lg-4 col-md-4">
                                 <div class="block">
                                     <div class="block_content">
                                         <div class="effect">
                                             <a href="#"> <img class="img-fluid"
-                                                              src="assets/images/1.jpg"
+                                                              src="{{$slider -> photo }}"
                                                               alt="banner3-1" title="banner3-1"></a>
 
 
@@ -74,32 +78,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="nov-image col-lg-4 col-md-4">
-                                <div class="block">
-                                    <div class="block_content">
-                                        <div class="effect">
-                                            <a href="#"> <img class="img-fluid"
-                                                              src="assets/images/2.jpg"
-                                                              alt="banner3-1" title="banner3-1"></a>
-
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="nov-image col-lg-4 col-md-4">
-                                <div class="block">
-                                    <div class="block_content">
-                                        <div class="effect">
-                                            <a href="#"> <img class="img-fluid"
-                                                              src="assets/images/3.jpg"
-                                                              alt="banner3-1" title="banner3-1"></a>
-
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
+                            @endisset
                         </div>
                     </div>
                     <div class="nov-row  col-lg-12 col-xs-12">

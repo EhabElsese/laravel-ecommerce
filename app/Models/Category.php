@@ -39,4 +39,22 @@ class Category extends Model
     }
 
 
+    public function scopeParent($query){
+        return $query -> whereNull('parent_id');
+    }
+
+    public function scopeChild($query){
+        return $query -> whereNotNull('parent_id');
+    }
+
+    public function childrens(){
+        return $this -> hasMany(Self::class,'parent_id')->with("childrens");
+    }
+
+
+    public function products()
+    {
+        return $this -> belongsToMany(Product::class,'product_categories');
+    }
+
 }

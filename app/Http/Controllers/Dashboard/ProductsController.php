@@ -152,7 +152,7 @@ class ProductsController extends Controller
 
 
         try {
-            // save dropzone images
+            // save dropzone imagess
             if ($request->has('document') && count($request->document) > 0) {
                 foreach ($request->document as $image) {
                     Image::create([

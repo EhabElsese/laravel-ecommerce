@@ -16,7 +16,7 @@ class SliderController extends Controller
         return view('dashboard.sliders.images.create', compact('images'));
     }
 
-    //to save images to folder only
+    //to save images to folder onlys
     public function saveSliderImages(Request $request)
     {
 
@@ -32,6 +32,8 @@ class SliderController extends Controller
 
     public function saveSliderImagesDB(SliderImagesRequest $request)
     {
+
+        
 
         try {
             // save dropzone images

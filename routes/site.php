@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Site\CategoryController;
+use App\Http\Controllers\Site\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,11 +19,11 @@ use Illuminate\Support\Facades\Route;
 
 
 
-    Route::group(['namespace' => 'Site'/*, 'middleware' => 'guest'*/], function () {
+    Route::group([/*'namespace' => 'Site', 'middleware' => 'guest'*/], function () {
         //guest  user
         Route::get('fat','PaymentController@fatoorah');
-        route::get('/', 'HomeController@home')->name('home')->middleware('VerifiedUser');
-        route::get('category/{slug}', 'CategoryController@productsBySlug')->name('category');
+        route::get('/', [HomeController::class,"home"])->name('home')->middleware('auth');
+        route::get('category/{slug}', [CategoryController::class,'productsBySlug'])->name('category');
         route::get('product/{slug}', 'ProductController@productsBySlug')->name('product.details');
 
         /**
@@ -51,10 +53,6 @@ use Illuminate\Support\Facades\Route;
         Route::post('products/{productId}/reviews', 'ProductReviewController@store')->name('products.reviews.store');
         Route::get('payment/{amount}', 'PaymentController@getPayments') -> name('payment');
         Route::post('payment', 'PaymentController@processPayment') -> name('payment.process');
-        Route::get('/',function (){
-
-            return view('front.home');
-        })->name('home');
 
     });
 
